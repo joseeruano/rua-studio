@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Specifically ensures major AI bots can crawl your high-quality content
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.byrua.com/sitemap.xml
