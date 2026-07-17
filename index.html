@@ -219,7 +219,7 @@
 
         <!-- Lulo Libros -->
         <div class="work-item" data-vimeo="1210245588">
-            <iframe class="vimeo-thumb" src="https://player.vimeo.com/video/1210245588?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe class="vimeo-thumb" data-src="https://player.vimeo.com/video/1210245588?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="play-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
@@ -232,7 +232,7 @@
 
         <!-- Custom Education Solutions -->
         <div class="work-item" data-vimeo="1210247343">
-            <iframe class="vimeo-thumb" src="https://player.vimeo.com/video/1210247343?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe class="vimeo-thumb" data-src="https://player.vimeo.com/video/1210247343?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="play-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
@@ -245,7 +245,7 @@
 
         <!-- Tuwa Pro -->
         <div class="work-item" data-vimeo="519140766">
-            <iframe class="vimeo-thumb" src="https://player.vimeo.com/video/519140766?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe class="vimeo-thumb" data-src="https://player.vimeo.com/video/519140766?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="play-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
@@ -258,7 +258,7 @@
 
         <!-- Petology -->
         <div class="work-item" data-vimeo="638033453">
-            <iframe class="vimeo-thumb" src="https://player.vimeo.com/video/638033453?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe class="vimeo-thumb" data-src="https://player.vimeo.com/video/638033453?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="play-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
@@ -271,7 +271,7 @@
 
         <!-- MIA Store -->
         <div class="work-item" data-vimeo="853529033">
-            <iframe class="vimeo-thumb" src="https://player.vimeo.com/video/853529033?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe class="vimeo-thumb" data-src="https://player.vimeo.com/video/853529033?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="play-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
@@ -284,7 +284,7 @@
 
         <!-- Multi Negocios GT -->
         <div class="work-item" data-vimeo="818439550">
-            <iframe class="vimeo-thumb" src="https://player.vimeo.com/video/818439550?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe class="vimeo-thumb" data-src="https://player.vimeo.com/video/818439550?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="play-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
@@ -297,7 +297,7 @@
 
         <!-- Club Italiano -->
         <div class="work-item" data-vimeo="590033507">
-            <iframe class="vimeo-thumb" src="https://player.vimeo.com/video/590033507?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe class="vimeo-thumb" data-src="https://player.vimeo.com/video/590033507?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="play-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
@@ -310,7 +310,7 @@
 
         <!-- HRRL -->
         <div class="work-item" data-vimeo="868023820">
-            <iframe class="vimeo-thumb" src="https://player.vimeo.com/video/868023820?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe class="vimeo-thumb" data-src="https://player.vimeo.com/video/868023820?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="play-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
@@ -379,6 +379,24 @@
     });
 
     const observer = new IntersectionObserver((entries) => {
+
+    const vimeoLoader = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const iframe = entry.target;
+            if (iframe.dataset.src) {
+                iframe.src = iframe.dataset.src;
+                iframe.removeAttribute('data-src');
+            }
+            vimeoLoader.unobserve(iframe);
+        }
+    });
+}, { rootMargin: '600px 0px 600px 0px', threshold: 0.01 });
+
+document.querySelectorAll('.vimeo-thumb[data-src]').forEach(iframe => {
+    vimeoLoader.observe(iframe);
+});
+        
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
