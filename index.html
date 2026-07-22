@@ -91,6 +91,21 @@
         .work-item:hover .play-btn { background: var(--accent); border-color: var(--accent); transform: translate(-50%, -50%) scale(1.1); }
         .work-item.playing .play-btn { display: none; }
 
+        /* PACKAGES */
+        #packages { background: var(--white); color: var(--black); }
+        .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1400px; margin: 4rem auto 0; align-items: stretch; }
+        .package-card { border: 1px solid #e5e5e5; border-radius: 8px; padding: 3rem; display: flex; flex-direction: column; transition: all 0.4s ease; }
+        .package-card.featured { border-color: var(--black); }
+        .package-name { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
+        .package-title { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -0.01em; }
+        .package-price { font-size: 2.2rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .package-features { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
+        .package-features li { font-size: 0.95rem; padding: 0.6rem 0; border-top: 1px solid #eee; opacity: 0.85; }
+        .package-features li:first-child { border-top: none; }
+        .package-who { font-size: 0.9rem; color: #666; margin-bottom: 2rem; line-height: 1.6; }
+        .package-cta { display: inline-flex; justify-content: center; padding: 1rem 2rem; background: var(--black); color: var(--white); text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 0.95rem; transition: transform 0.3s; }
+        .package-cta:hover { transform: scale(1.03); }
+
         /* TEAM */
         #team { background: var(--black); }
         .team-grid { display: flex; justify-content: center; margin: 4rem auto 0; }
@@ -367,6 +382,62 @@
     </div>
 </section>
 
+<section id="packages">
+    <div class="section-label" style="color: var(--gray);" data-i18n="packagesLabel">Shopify Packages</div>
+    <h2 class="section-title" style="color: var(--black);" data-i18n="packagesTitle">Pick the scope that fits where your brand is right now.</h2>
+    <div class="packages-grid">
+
+        <div class="package-card">
+            <div class="package-name" data-i18n="pkg1Name">Landing Page</div>
+            <div class="package-title" data-i18n="pkg1Title">The Launch Page</div>
+            <div class="package-price" data-i18n="pkg1Price">From $1,500</div>
+            <ul class="package-features">
+                <li data-i18n="pkg1Feat1">Strategy call to align on goals and audience</li>
+                <li data-i18n="pkg1Feat2">One fully designed, conversion-focused Shopify landing page</li>
+                <li data-i18n="pkg1Feat3">Copywriting included</li>
+                <li data-i18n="pkg1Feat4">Mobile-optimized</li>
+                <li data-i18n="pkg1Feat5">2 rounds of revisions</li>
+                <li data-i18n="pkg1Feat6">14 days of support after handover</li>
+            </ul>
+            <p class="package-who" data-i18n="pkg1Who">For a launch, a hero product, or a campaign that needs its own home — you don't need a full store, just one page that does everything right.</p>
+            <a href="#contact" class="package-cta" data-i18n="pkgCta">Let's Talk</a>
+        </div>
+
+        <div class="package-card featured">
+            <div class="package-name" data-i18n="pkg2Name">Full Build</div>
+            <div class="package-title" data-i18n="pkg2Title">The Complete Store</div>
+            <div class="package-price" data-i18n="pkg2Price">From $4,000</div>
+            <ul class="package-features">
+                <li data-i18n="pkg2Feat1">Strategy, design & development on Shopify</li>
+                <li data-i18n="pkg2Feat2">Home, collection, and product page templates</li>
+                <li data-i18n="pkg2Feat3">Copywriting included</li>
+                <li data-i18n="pkg2Feat4">App setup (reviews, email marketing, etc.)</li>
+                <li data-i18n="pkg2Feat5">3 rounds of revisions</li>
+                <li data-i18n="pkg2Feat6">30 days of support after handover</li>
+            </ul>
+            <p class="package-who" data-i18n="pkg2Who">For the brand that's ready to stop patching together a store and start having one that actually converts.</p>
+            <a href="#contact" class="package-cta" data-i18n="pkgCta">Let's Talk</a>
+        </div>
+
+        <div class="package-card">
+            <div class="package-name" data-i18n="pkg3Name">Custom</div>
+            <div class="package-title" data-i18n="pkg3Title">The Custom Project</div>
+            <div class="package-price" data-i18n="pkg3Price">Custom Quote</div>
+            <ul class="package-features">
+                <li data-i18n="pkg3Feat1">Full strategy and discovery process</li>
+                <li data-i18n="pkg3Feat2">Custom scope built around your business needs</li>
+                <li data-i18n="pkg3Feat3">Advanced functionality and app integrations</li>
+                <li data-i18n="pkg3Feat4">Full copywriting included</li>
+                <li data-i18n="pkg3Feat5">Priority access and dedicated project management</li>
+                <li data-i18n="pkg3Feat6">30 days of support after handover</li>
+            </ul>
+            <p class="package-who" data-i18n="pkg3Who">For large catalogs, complex functionality, or brands that need full creative direction alongside the build.</p>
+            <a href="#contact" class="package-cta" data-i18n="pkgCta">Let's Talk</a>
+        </div>
+
+    </div>
+</section>
+
 <footer>
     <div class="footer-logo">RUA</div>
     <ul class="footer-links">
@@ -457,7 +528,40 @@
             contactTitle: "Great commerce starts with a conversation. Tell us about your brand, we'll take it from there.",
             locationLabel: "Location",
             locationText: 'Available <strong> Worldwide </strong>| Guatemala City | Miami, FL |',
-            followLabel: "Follow"
+            followLabel: "Follow",
+            packagesLabel: "Shopify Packages",
+            packagesTitle: "Pick the scope that fits where your brand is right now.",
+            pkg1Name: "Landing Page",
+            pkg1Title: "The Launch Page",
+            pkg1Price: "From $1,500",
+            pkg1Feat1: "Strategy call to align on goals and audience",
+            pkg1Feat2: "One fully designed, conversion-focused Shopify landing page",
+            pkg1Feat3: "Copywriting included",
+            pkg1Feat4: "Mobile-optimized",
+            pkg1Feat5: "2 rounds of revisions",
+            pkg1Feat6: "14 days of support after handover",
+            pkg1Who: "For a launch, a hero product, or a campaign that needs its own home — you don't need a full store, just one page that does everything right.",
+            pkg2Name: "Full Build",
+            pkg2Title: "The Complete Store",
+            pkg2Price: "From $4,000",
+            pkg2Feat1: "Strategy, design & development on Shopify",
+            pkg2Feat2: "Home, collection, and product page templates",
+            pkg2Feat3: "Copywriting included",
+            pkg2Feat4: "App setup (reviews, email marketing, etc.)",
+            pkg2Feat5: "3 rounds of revisions",
+            pkg2Feat6: "30 days of support after handover",
+            pkg2Who: "For the brand that's ready to stop patching together a store and start having one that actually converts.",
+            pkg3Name: "Custom",
+            pkg3Title: "The Custom Project",
+            pkg3Price: "Custom Quote",
+            pkg3Feat1: "Full strategy and discovery process",
+            pkg3Feat2: "Custom scope built around your business needs",
+            pkg3Feat3: "Advanced functionality and app integrations",
+            pkg3Feat4: "Full copywriting included",
+            pkg3Feat5: "Priority access and dedicated project management",
+            pkg3Feat6: "30 days of support after handover",
+            pkg3Who: "For large catalogs, complex functionality, or brands that need full creative direction alongside the build.",
+            pkgCta: "Let's Talk"
         },
         es: {
             navAbout: "Nosotros", navServices: "Servicios", navWork: "Proyectos", navTeam: "Equipo", navContact: "Contacto",
@@ -505,7 +609,40 @@
             contactTitle: "El buen comercio empieza con una conversación. Cuéntanos sobre tu marca, nosotros nos encargamos del resto.",
             locationLabel: "Ubicación",
             locationText: 'Disponible <strong>en todo el mundo</strong> | Ciudad de Guatemala | Miami, FL |',
-            followLabel: "Síguenos"
+            followLabel: "Síguenos",
+            packagesLabel: "Paquetes Shopify",
+            packagesTitle: "Elige el alcance que se ajusta a dónde está tu marca ahora.",
+            pkg1Name: "Página de Aterrizaje",
+            pkg1Title: "La Página de Lanzamiento",
+            pkg1Price: "Desde $1,500",
+            pkg1Feat1: "Llamada de estrategia para alinear objetivos y audiencia",
+            pkg1Feat2: "Una página de aterrizaje en Shopify, diseñada y enfocada en conversión",
+            pkg1Feat3: "Redacción de copy incluida",
+            pkg1Feat4: "Optimizada para móvil",
+            pkg1Feat5: "2 rondas de revisión",
+            pkg1Feat6: "14 días de soporte después de la entrega",
+            pkg1Who: "Para un lanzamiento, un producto estrella o una campaña que necesita su propia página — no necesitas una tienda completa, solo una página que lo haga todo bien.",
+            pkg2Name: "Tienda Completa",
+            pkg2Title: "La Tienda Completa",
+            pkg2Price: "Desde $4,000",
+            pkg2Feat1: "Estrategia, diseño y desarrollo en Shopify",
+            pkg2Feat2: "Plantillas de inicio, colección y producto",
+            pkg2Feat3: "Redacción de copy incluida",
+            pkg2Feat4: "Configuración de apps (reseñas, email marketing, etc.)",
+            pkg2Feat5: "3 rondas de revisión",
+            pkg2Feat6: "30 días de soporte después de la entrega",
+            pkg2Who: "Para la marca que está lista para dejar de parchar su tienda y tener una que realmente convierta.",
+            pkg3Name: "Personalizado",
+            pkg3Title: "El Proyecto Personalizado",
+            pkg3Price: "Cotización Personalizada",
+            pkg3Feat1: "Proceso completo de estrategia y descubrimiento",
+            pkg3Feat2: "Alcance a la medida de las necesidades de tu negocio",
+            pkg3Feat3: "Funcionalidad avanzada e integraciones de apps",
+            pkg3Feat4: "Redacción de copy completa incluida",
+            pkg3Feat5: "Acceso prioritario y gestión de proyecto dedicada",
+            pkg3Feat6: "30 días de soporte después de la entrega",
+            pkg3Who: "Para catálogos grandes, funcionalidad compleja, o marcas que necesitan dirección creativa completa junto con la construcción.",
+            pkgCta: "Hablemos"
         }
     };
 
