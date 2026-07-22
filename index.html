@@ -25,11 +25,18 @@
         .cursor-follower { width: 40px; height: 40px; border: 1px solid var(--white); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; mix-blend-mode: difference; transition: transform 0.4s ease; }
         @media (max-width: 1024px) { body { cursor: auto; } .cursor, .cursor-follower { display: none; } }
 
-        nav { position: fixed; top: 0; width: 100%; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; mix-blend-mode: difference; }
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; mix-blend-mode: difference; gap: 2rem; }
         .logo { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.02em; color: var(--white); }
-        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; transition: opacity 0.3s; }
         .nav-links a:hover { opacity: 1; }
+
+        .lang-switch { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; user-select: none; flex-shrink: 0; }
+        .lang-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; color: var(--white); opacity: 0.4; transition: opacity 0.3s ease; }
+        .lang-tag.active { opacity: 1; }
+        .switch-track { width: 44px; height: 24px; border: 2px solid var(--white); border-radius: 100px; position: relative; flex-shrink: 0; }
+        .switch-knob { width: 14px; height: 14px; background: var(--white); border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: left 0.3s ease; }
+        .switch-track.on .switch-knob { left: calc(100% - 17px); }
 
         .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .hero-content { text-align: center; max-width: 1200px; padding: 0 2rem; position: relative; z-index: 2; }
@@ -73,7 +80,7 @@
         .work-item { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; background: #111; }
         .work-item .vimeo-thumb { width: 100%; display: block; aspect-ratio: 16/9; border: none; pointer-events: none; }
         .work-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem 4rem; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 100%); transition: opacity 0.4s; }
-        .work-item:hover .work-overlay { opacity: 45 }
+        .work-item:hover .work-overlay { opacity: 0.45; }
         .work-item.playing .vimeo-thumb { pointer-events: auto; }
         .work-item.playing .work-overlay { opacity: 0; }
         .work-category { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.5rem; }
@@ -133,19 +140,24 @@
 <nav>
     <div class="logo">RUA</div>
     <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-i18n="navAbout">About</a></li>
+        <li><a href="#services" data-i18n="navServices">Services</a></li>
+        <li><a href="#work" data-i18n="navWork">Work</a></li>
+        <li><a href="#team" data-i18n="navTeam">Team</a></li>
+        <li><a href="#contact" data-i18n="navContact">Contact</a></li>
     </ul>
+    <div class="lang-switch" id="langToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle language">
+        <span class="lang-tag active" data-lang-tag="en">EN</span>
+        <div class="switch-track" id="switchTrack"><div class="switch-knob"></div></div>
+        <span class="lang-tag" data-lang-tag="es">ES</span>
+    </div>
 </nav>
 
 <section class="hero">
     <div class="hero-content">
-        <h1>E-commerce built to perform.</h1>
-        <p>A boutique digital studio crafting Shopify storefronts, digital strategy, and conversion-focused experiences for brands in the U.S. and LATAM.</p>
-        <a href="#contact" class="hero-cta">Let's Talk</a>
+        <h1 data-i18n="heroTitle">E-commerce built to perform.</h1>
+        <p data-i18n="heroSubtitle">A boutique digital studio crafting Shopify storefronts, digital strategy, and conversion-focused experiences for brands in the U.S. and LATAM.</p>
+        <a href="#contact" class="hero-cta" data-i18n="heroCta">Let's Talk</a>
     </div>
     <div class="scroll-indicator">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -155,23 +167,23 @@
 </section>
 
 <section id="about">
-    <div class="section-label">About</div>
+    <div class="section-label" data-i18n="aboutLabel">About</div>
     <div class="about-grid">
         <div>
-            <h2 class="section-title">Serious about commerce. Obsessed with performance.</h2>
+            <h2 class="section-title" data-i18n="aboutTitle">Serious about commerce. Obsessed with performance.</h2>
             <div class="shopify-badge">
                 <svg viewBox="0 0 109.5 124.5" xmlns="http://www.w3.org/2000/svg">
                     <path d="M74.7 14.8s-1.4.4-3.7 1.1c-.4-1.3-1-2.8-1.8-4.3-2.6-5-6.5-7.7-11.1-7.7-.3 0-.6 0-1 .1-.1-.2-.3-.3-.4-.5-2-2.2-4.6-3.2-7.7-3.1-6 .2-12 4.5-16.8 12.2-3.4 5.4-6 12.2-6.7 17.4-6.9 2.1-11.7 3.6-11.8 3.7-3.5 1.1-3.6 1.2-4 4.5C9.3 40.7 0 111.5 0 111.5l75.6 13V14.6c-.3.1-.6.1-.9.2zM57 20.2c-4 1.2-8.4 2.6-12.7 3.9 1.2-4.7 3.6-9.4 6.4-12.5 1.1-1.1 2.6-2.4 4.3-3.2 1.7 3.5 2.1 8.3 2 11.8zM49 4.5c1.4 0 2.6.3 3.6.9-1.6.8-3.2 2.1-4.7 3.6-3.8 4.1-6.7 10.5-7.9 16.6-3.6 1.1-7.2 2.2-10.5 3.2C31.6 19.3 39.8 4.7 49 4.5zM39 63.8c.4 6.3 17 7.7 18 22.1.7 11.5-6.1 19.3-15.9 19.9-11.8.7-18.3-6.2-18.3-6.2l2.5-10.6s6.5 4.9 11.7 4.6c3.4-.2 4.6-3 4.5-5-.5-8.2-14-7.7-14.9-20.9-.7-11.2 6.6-22.5 22.8-23.5 6.2-.4 9.4 1.2 9.4 1.2l-3.6 13.8s-4.1-1.9-9-1.6c-7.1.5-7.2 5-7.2 5.2zm29.2-42.6c0-3.1-.4-7.5-1.8-11.2 4.6.9 6.8 6 7.8 9.1-1.8.5-3.7 1.2-6 2.1z" fill="#95BF47"/>
                     <path d="M76.4 124.3l33.1-8.3S96.2 21.4 96.1 20.7c-.1-.6-.6-1-1.1-1-.5 0-9.3-.2-9.3-.2s-5.4-5.2-7.4-7.2v112z" fill="#5E8E3E"/>
                 </svg>
                 <div class="shopify-badge-text">
-                    <strong>Shopify Partner</strong>
-                    Since 2019
+                    <strong data-i18n="shopifyBadge">Shopify Partner</strong>
+                    <span data-i18n="shopifySince">Since 2019</span>
                 </div>
             </div>
         </div>
         <div>
-            <p class="about-text">
+            <p class="about-text" data-i18n="aboutText">
                 We're passionate about creating new opportunities for brands. At Rua, we've partnered with companies across different industries, helping them build and grow their <strong>digital presence</strong>.
                 <br><br>
                 Led by <strong>Jose Ruano</strong> — SVA-trained, business-educated, and currently head of e-commerce and digital products for one of the largest Spanish-language commerce operations in the U.S. RUA is where that expertise goes to work for your brand.
@@ -181,40 +193,40 @@
     <div class="about-stats">
         <div class="stat">
             <div class="stat-number">+10</div>
-            <div class="stat-label">Shopify Stores Launched</div>
+            <div class="stat-label" data-i18n="stat1Label">Shopify Stores Launched</div>
         </div>
         <div class="stat">
             <div class="stat-number">6</div>
-            <div class="stat-label">Years in Shopify & DTC</div>
+            <div class="stat-label" data-i18n="stat2Label">Years in Shopify & DTC</div>
         </div>
     </div>
 </section>
 
 <section id="services">
-    <div class="section-label" style="color: var(--gray);">Services</div>
-    <h2 class="section-title" style="color: var(--black);">From storefront to strategy — everything your brand needs to win online.</h2>
+    <div class="section-label" style="color: var(--gray);" data-i18n="servicesLabel">Services</div>
+    <h2 class="section-title" style="color: var(--black);" data-i18n="servicesTitle">From storefront to strategy — everything your brand needs to win online.</h2>
     <div class="services-grid">
         <div class="service-item">
             <div class="service-number">01</div>
-            <h3>E-commerce Design & Development</h3>
-            <p>Custom Shopify stores built from the ground up — designed to convert, built to scale, and crafted to reflect your brand at its best.</p>
+            <h3 data-i18n="service1Title">E-commerce Design & Development</h3>
+            <p data-i18n="service1Text">Custom Shopify stores built from the ground up — designed to convert, built to scale, and crafted to reflect your brand at its best.</p>
         </div>
         <div class="service-item">
             <div class="service-number">02</div>
-            <h3>Brand Identity & Strategy</h3>
-            <p>We define who you are before we design what you look like. Strategic brand building that creates lasting impressions across every touchpoint.</p>
+            <h3 data-i18n="service2Title">Brand Identity & Strategy</h3>
+            <p data-i18n="service2Text">We define who you are before we design what you look like. Strategic brand building that creates lasting impressions across every touchpoint.</p>
         </div>
         <div class="service-item">
             <div class="service-number">03</div>
-            <h3>Creative Development</h3>
-            <p>From launch to growth — we map out the digital roadmap your brand needs to compete, convert, and win online. Whatever your brand needs to stand out — we build it while using the latests trends (AI, Design, etc)</p>
+            <h3 data-i18n="service3Title">Creative Development</h3>
+            <p data-i18n="service3Text">From launch to growth — we map out the digital roadmap your brand needs to compete, convert, and win online. Whatever your brand needs to stand out — we build it while using the latests trends (AI, Design, etc)</p>
         </div>
     </div>
 </section>
 
 <section id="work">
-    <div class="section-label">Selected Work</div>
-    <h2 class="section-title">Projects we're proud of.</h2>
+    <div class="section-label" data-i18n="workLabel">Selected Work</div>
+    <h2 class="section-title" data-i18n="workTitle">Projects we're proud of.</h2>
     <div class="work-grid">
 
         <!-- Lulo Libros -->
@@ -224,9 +236,9 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
             <div class="work-overlay">
-                <div class="work-category">E-commerce and Digital Presence</div>
+                <div class="work-category" data-i18n="work1Category">E-commerce and Digital Presence</div>
                 <h3 class="work-title">Lulo Libros</h3>
-                <p class="work-description">A complete e-commerce solution redesign, helping the brand reach new markets and a more modern outlook into their digital branding</p>
+                <p class="work-description" data-i18n="work1Desc">A complete e-commerce solution redesign, helping the brand reach new markets and a more modern outlook into their digital branding</p>
             </div>
         </div>
 
@@ -237,9 +249,9 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
             <div class="work-overlay">
-                <div class="work-category">Website and digital products redesign</div>
+                <div class="work-category" data-i18n="work2Category">Website and digital products redesign</div>
                 <h3 class="work-title">Custom Edu</h3>
-                <p class="work-description">A modern website redesign that elevates the brand’s digital presence—crafted to deliver a fresh, intuitive experience for today’s customers.</p>
+                <p class="work-description" data-i18n="work2Desc">A modern website redesign that elevates the brand's digital presence—crafted to deliver a fresh, intuitive experience for today's customers.</p>
             </div>
         </div>
 
@@ -250,9 +262,9 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
             <div class="work-overlay">
-                <div class="work-category">E-commerce Web Design</div>
+                <div class="work-category" data-i18n="work3Category">E-commerce Web Design</div>
                 <h3 class="work-title">Tuwa Pro</h3>
-                <p class="work-description">A complete e-commerce solution built from scratch. We led the design of the store working alongside the Tuwa Pro team and stakeholders to build the foundation of this new sales channel.</p>
+                <p class="work-description" data-i18n="work3Desc">A complete e-commerce solution built from scratch. We led the design of the store working alongside the Tuwa Pro team and stakeholders to build the foundation of this new sales channel.</p>
             </div>
         </div>
 
@@ -263,9 +275,9 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
             <div class="work-overlay">
-                <div class="work-category">E-commerce and Digital Strategy</div>
+                <div class="work-category" data-i18n="work4Category">E-commerce and Digital Strategy</div>
                 <h3 class="work-title">Petology Petshop</h3>
-                <p class="work-description">A new digital sales channel for a pet shop in Guatemala. Custom design with custom service integrations — a seamless experience from digital to the real world.</p>
+                <p class="work-description" data-i18n="work4Desc">A new digital sales channel for a pet shop in Guatemala. Custom design with custom service integrations — a seamless experience from digital to the real world.</p>
             </div>
         </div>
 
@@ -276,9 +288,9 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
             <div class="work-overlay">
-                <div class="work-category">E-commerce Web Design</div>
+                <div class="work-category" data-i18n="work5Category">E-commerce Web Design</div>
                 <h3 class="work-title">MIA Store</h3>
-                <p class="work-description">A fully designed e-commerce experience for MIA Store — bringing their brand to life online with a clean, conversion-focused storefront.</p>
+                <p class="work-description" data-i18n="work5Desc">A fully designed e-commerce experience for MIA Store — bringing their brand to life online with a clean, conversion-focused storefront.</p>
             </div>
         </div>
 
@@ -289,9 +301,9 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
             <div class="work-overlay">
-                <div class="work-category">Digital Strategy</div>
+                <div class="work-category" data-i18n="work6Category">Digital Strategy</div>
                 <h3 class="work-title">Multi Negocios GT</h3>
-                <p class="work-description">A digital strategy and web presence project for one of Guatemala's multi-category businesses — built for scale and reach.</p>
+                <p class="work-description" data-i18n="work6Desc">A digital strategy and web presence project for one of Guatemala's multi-category businesses — built for scale and reach.</p>
             </div>
         </div>
 
@@ -302,9 +314,9 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
             <div class="work-overlay">
-                <div class="work-category">Brand & Web Design</div>
+                <div class="work-category" data-i18n="work7Category">Brand & Web Design</div>
                 <h3 class="work-title">Club Italiano de Guatemala</h3>
-                <p class="work-description">A refined digital presence for Club Italiano de Guatemala — blending heritage and modernity into a world-class web experience.</p>
+                <p class="work-description" data-i18n="work7Desc">A refined digital presence for Club Italiano de Guatemala — blending heritage and modernity into a world-class web experience.</p>
             </div>
         </div>
 
@@ -315,9 +327,9 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
             </div>
             <div class="work-overlay">
-                <div class="work-category">Creative Development</div>
+                <div class="work-category" data-i18n="work8Category">Creative Development</div>
                 <h3 class="work-title">HRRL</h3>
-                <p class="work-description">A creative development project pushing the boundaries of digital experience — built for a brand that thinks differently.</p>
+                <p class="work-description" data-i18n="work8Desc">A creative development project pushing the boundaries of digital experience — built for a brand that thinks differently.</p>
             </div>
         </div>
 
@@ -325,28 +337,28 @@
 </section>
 
 <section id="team">
-    <div class="section-label">The Practice</div>
-    <h2 class="section-title">One operator. Full ownership.</h2>
+    <div class="section-label" data-i18n="teamLabel">The Practice</div>
+    <h2 class="section-title" data-i18n="teamTitle">One operator. Full ownership.</h2>
     <div class="team-grid">
         <div class="team-member">
             <img src="IMG_0310.JPG" alt="Jose E. Ruano" class="team-photo" />
             <h3>Jose E. Ruano</h3>
-            <div class="role">Founder, Shopify & DTC Strategist — U.S. & LATAM</div>
+            <div class="role" data-i18n="teamRole">Founder, Shopify & DTC Strategist — U.S. & LATAM</div>
         </div>
     </div>
 </section>
 
 <section id="contact">
     <div class="contact-content">
-        <h2 class="contact-title">Great commerce starts with a conversation. Tell us about your brand, we'll take it from there.</h2>
+        <h2 class="contact-title" data-i18n="contactTitle">Great commerce starts with a conversation. Tell us about your brand, we'll take it from there.</h2>
         <a href="mailto:hello@byrua.com" class="contact-email">hello@byrua.com</a>
         <div class="contact-info-grid">
             <div class="contact-info-item">
-                <h4>Location</h4>
-                <p>Available <strong> Worldwide </strong>| Guatemala City | Miami, FL |</p>
+                <h4 data-i18n="locationLabel">Location</h4>
+                <p data-i18n="locationText">Available <strong> Worldwide </strong>| Guatemala City | Miami, FL |</p>
             </div>
             <div class="contact-info-item">
-                <h4>Follow</h4>
+                <h4 data-i18n="followLabel">Follow</h4>
                 <a href="https://www.instagram.com/joseeruano" target="_blank">Instagram</a>
                 <a href="https://www.linkedin.com/in/joseeruano/" target="_blank">LinkedIn</a>
                 <a href="https://thenewgazette.substack.com" target="_blank">The New Gazette</a>
@@ -358,10 +370,10 @@
 <footer>
     <div class="footer-logo">RUA</div>
     <ul class="footer-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-i18n="navAbout">About</a></li>
+        <li><a href="#services" data-i18n="navServices">Services</a></li>
+        <li><a href="#work" data-i18n="navWork">Work</a></li>
+        <li><a href="#contact" data-i18n="navContact">Contact</a></li>
     </ul>
     <div class="footer-social">
         <a href="https://www.instagram.com/joseeruano" target="_blank">Instagram</a>
@@ -396,6 +408,138 @@
 
     document.querySelector('.hero').style.opacity = '1';
     document.querySelector('.hero').style.transform = 'translateY(0)';
+
+    // ---------- Language toggle (EN/ES) ----------
+    const translations = {
+        en: {
+            navAbout: "About", navServices: "Services", navWork: "Work", navTeam: "Team", navContact: "Contact",
+            heroTitle: "E-commerce built to perform.",
+            heroSubtitle: "A boutique digital studio crafting Shopify storefronts, digital strategy, and conversion-focused experiences for brands in the U.S. and LATAM.",
+            heroCta: "Let's Talk",
+            aboutLabel: "About",
+            aboutTitle: "Serious about commerce. Obsessed with performance.",
+            shopifyBadge: "Shopify Partner",
+            shopifySince: "Since 2019",
+            aboutText: `We're passionate about creating new opportunities for brands. At Rua, we've partnered with companies across different industries, helping them build and grow their <strong>digital presence</strong>.
+                <br><br>
+                Led by <strong>Jose Ruano</strong> — SVA-trained, business-educated, and currently head of e-commerce and digital products for one of the largest Spanish-language commerce operations in the U.S. RUA is where that expertise goes to work for your brand.`,
+            stat1Label: "Shopify Stores Launched",
+            stat2Label: "Years in Shopify & DTC",
+            servicesLabel: "Services",
+            servicesTitle: "From storefront to strategy — everything your brand needs to win online.",
+            service1Title: "E-commerce Design & Development",
+            service1Text: "Custom Shopify stores built from the ground up — designed to convert, built to scale, and crafted to reflect your brand at its best.",
+            service2Title: "Brand Identity & Strategy",
+            service2Text: "We define who you are before we design what you look like. Strategic brand building that creates lasting impressions across every touchpoint.",
+            service3Title: "Creative Development",
+            service3Text: "From launch to growth — we map out the digital roadmap your brand needs to compete, convert, and win online. Whatever your brand needs to stand out — we build it while using the latest trends (AI, Design, etc)",
+            workLabel: "Selected Work",
+            workTitle: "Projects we're proud of.",
+            work1Category: "E-commerce and Digital Presence",
+            work1Desc: "A complete e-commerce solution redesign, helping the brand reach new markets and a more modern outlook into their digital branding",
+            work2Category: "Website and digital products redesign",
+            work2Desc: "A modern website redesign that elevates the brand's digital presence—crafted to deliver a fresh, intuitive experience for today's customers.",
+            work3Category: "E-commerce Web Design",
+            work3Desc: "A complete e-commerce solution built from scratch. We led the design of the store working alongside the Tuwa Pro team and stakeholders to build the foundation of this new sales channel.",
+            work4Category: "E-commerce and Digital Strategy",
+            work4Desc: "A new digital sales channel for a pet shop in Guatemala. Custom design with custom service integrations — a seamless experience from digital to the real world.",
+            work5Category: "E-commerce Web Design",
+            work5Desc: "A fully designed e-commerce experience for MIA Store — bringing their brand to life online with a clean, conversion-focused storefront.",
+            work6Category: "Digital Strategy",
+            work6Desc: "A digital strategy and web presence project for one of Guatemala's multi-category businesses — built for scale and reach.",
+            work7Category: "Brand & Web Design",
+            work7Desc: "A refined digital presence for Club Italiano de Guatemala — blending heritage and modernity into a world-class web experience.",
+            work8Category: "Creative Development",
+            work8Desc: "A creative development project pushing the boundaries of digital experience — built for a brand that thinks differently.",
+            teamLabel: "The Practice",
+            teamTitle: "One operator. Full ownership.",
+            teamRole: "Founder, Shopify & DTC Strategist — U.S. & LATAM",
+            contactTitle: "Great commerce starts with a conversation. Tell us about your brand, we'll take it from there.",
+            locationLabel: "Location",
+            locationText: 'Available <strong> Worldwide </strong>| Guatemala City | Miami, FL |',
+            followLabel: "Follow"
+        },
+        es: {
+            navAbout: "Nosotros", navServices: "Servicios", navWork: "Proyectos", navTeam: "Equipo", navContact: "Contacto",
+            heroTitle: "E-commerce construido para rendir.",
+            heroSubtitle: "Un estudio digital boutique creando tiendas Shopify, estrategia digital y experiencias enfocadas en conversión para marcas en EE.UU. y LATAM.",
+            heroCta: "Hablemos",
+            aboutLabel: "Nosotros",
+            aboutTitle: "Serios con el comercio. Obsesionados con el rendimiento.",
+            shopifyBadge: "Shopify Partner",
+            shopifySince: "Desde 2019",
+            aboutText: `Nos apasiona crear nuevas oportunidades para las marcas. En Rua, nos hemos asociado con empresas de distintas industrias, ayudándolas a construir y hacer crecer su <strong>presencia digital</strong>.
+                <br><br>
+                Liderado por <strong>Jose Ruano</strong> — formado en SVA, con formación en negocios, y actualmente al frente de e-commerce y productos digitales de una de las operaciones de comercio en español más grandes de EE.UU. RUA es donde esa experiencia trabaja para tu marca.`,
+            stat1Label: "Tiendas Shopify lanzadas",
+            stat2Label: "Años en Shopify y DTC",
+            servicesLabel: "Servicios",
+            servicesTitle: "De la tienda a la estrategia — todo lo que tu marca necesita para ganar en línea.",
+            service1Title: "Diseño y Desarrollo E-commerce",
+            service1Text: "Tiendas Shopify a la medida, construidas desde cero — diseñadas para convertir, hechas para escalar, y creadas para reflejar tu marca en su mejor versión.",
+            service2Title: "Identidad de Marca y Estrategia",
+            service2Text: "Definimos quién eres antes de diseñar cómo te ves. Construcción estratégica de marca que crea impresiones duraderas en cada punto de contacto.",
+            service3Title: "Desarrollo Creativo",
+            service3Text: "Del lanzamiento al crecimiento — trazamos la hoja de ruta digital que tu marca necesita para competir, convertir y ganar en línea. Lo que sea que tu marca necesite para destacar — lo construimos usando las últimas tendencias (IA, Diseño, etc.)",
+            workLabel: "Proyectos Seleccionados",
+            workTitle: "Proyectos de los que estamos orgullosos.",
+            work1Category: "E-commerce y Presencia Digital",
+            work1Desc: "Un rediseño completo de la solución de e-commerce, ayudando a la marca a alcanzar nuevos mercados con una imagen digital más moderna.",
+            work2Category: "Rediseño de sitio web y productos digitales",
+            work2Desc: "Un rediseño de sitio web moderno que eleva la presencia digital de la marca—creado para ofrecer una experiencia fresca e intuitiva para los clientes de hoy.",
+            work3Category: "Diseño Web E-commerce",
+            work3Desc: "Una solución de e-commerce construida desde cero. Lideramos el diseño de la tienda junto al equipo de Tuwa Pro y otros colaboradores para construir la base de este nuevo canal de ventas.",
+            work4Category: "E-commerce y Estrategia Digital",
+            work4Desc: "Un nuevo canal de ventas digital para una tienda de mascotas en Guatemala. Diseño a la medida con integraciones de servicios — una experiencia fluida de lo digital a lo real.",
+            work5Category: "Diseño Web E-commerce",
+            work5Desc: "Una experiencia de e-commerce completamente diseñada para MIA Store — dando vida a su marca en línea con una tienda limpia y enfocada en conversión.",
+            work6Category: "Estrategia Digital",
+            work6Desc: "Un proyecto de estrategia digital y presencia web para uno de los negocios multi-categoría de Guatemala — construido para escalar y alcanzar más audiencia.",
+            work7Category: "Marca y Diseño Web",
+            work7Desc: "Una presencia digital refinada para el Club Italiano de Guatemala — combinando herencia y modernidad en una experiencia web de primer nivel.",
+            work8Category: "Desarrollo Creativo",
+            work8Desc: "Un proyecto de desarrollo creativo que empuja los límites de la experiencia digital — construido para una marca que piensa diferente.",
+            teamLabel: "La Práctica",
+            teamTitle: "Un operador. Responsabilidad total.",
+            teamRole: "Fundador, Estratega Shopify y DTC — EE.UU. y LATAM",
+            contactTitle: "El buen comercio empieza con una conversación. Cuéntanos sobre tu marca, nosotros nos encargamos del resto.",
+            locationLabel: "Ubicación",
+            locationText: 'Disponible <strong>en todo el mundo</strong> | Ciudad de Guatemala | Miami, FL |',
+            followLabel: "Síguenos"
+        }
+    };
+
+    function setLanguage(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (translations[lang] && translations[lang][key] !== undefined) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+        document.documentElement.lang = lang;
+        document.querySelectorAll('.lang-tag').forEach(tag => {
+            tag.classList.toggle('active', tag.dataset.langTag === lang);
+        });
+        document.getElementById('switchTrack').classList.toggle('on', lang === 'es');
+        langToggle.setAttribute('aria-checked', lang === 'es' ? 'true' : 'false');
+        try { localStorage.setItem('rua-lang', lang); } catch (e) {}
+    }
+
+    const langToggle = document.getElementById('langToggle');
+    langToggle.addEventListener('click', () => {
+        const current = document.querySelector('.lang-tag.active').dataset.langTag;
+        setLanguage(current === 'en' ? 'es' : 'en');
+    });
+    langToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            langToggle.click();
+        }
+    });
+
+    let savedLang = 'en';
+    try { savedLang = localStorage.getItem('rua-lang') || 'en'; } catch (e) {}
+    setLanguage(savedLang);
 </script>
 </body>
 </html>
